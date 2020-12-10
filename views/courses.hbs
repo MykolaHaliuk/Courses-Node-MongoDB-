@@ -1,0 +1,35 @@
+<h1>Курси</h1>
+<div class="row">
+  {{#if courses.length}}
+  {{#each courses}}
+    
+      <div class="col xl4">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{img}}" alt="{{title}}">
+          </div>
+          <div class="card-content">
+              <span class="card-title">{{title}}</span>
+            <p class="price">{{price}}</p>
+          </div>
+          <div class="card-action">
+            {{#if @root.isAuth}}
+              <form action="/card/add" method="POST">
+                <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit"class="btn btn-primary">Купити</button>
+              </form>
+              {{#ifeq userId._id @root.userId}}
+              <a href="/courses/{{id}}/edit?allow=true">Редагувати</a>
+              {{/ifeq}}
+            {{/if}}
+              <a href="/courses/{{id}}" target="_blank">Вікрити курс</a>
+            
+          </div>
+        </div>
+      </div>
+  {{/each}}
+</div>
+{{else}}
+<p>Курсосів не має</p>
+{{/if}}

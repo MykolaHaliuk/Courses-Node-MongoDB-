@@ -1,0 +1,67 @@
+<div class="auth">
+    <div class="row">
+        <div class="col s12">
+        <ul class="tabs">
+            <li class="tab col s6"><a class="active" href="#login">Війти</a></li>
+            <li class="tab col s6"><a href="#register">Регистрація</a></li>
+        </ul>
+        </div>
+        <div id="login" class="col s6 offset-s3">
+            
+            <h1>Війти в магазин</h1>
+            {{#if loginError}}
+                <p class="alert">{{loginError}}</p>
+            {{/if}}
+            
+            {{#if passError}}
+                <p class="alert">{{passError}}</p>
+            {{/if}}
+            <form action="/auth/login" method="POST">
+                <div class="input-field">
+                    <input name="email" type="email" class="validate" required>
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="Ведіть email"></span>
+                </div>
+                <div class="input-field">
+                    <input name="password" type="password" class="validate" required>
+                    <label for="password">Пароль</label>
+                    <span class="helper-text" data-error="Введіть пароль"></span>
+                </div>
+                <p><a href="/auth/reset">Забули пароль?</a></p>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+                <button class="btn btn-primary" type="submit">Війти</button>
+        </form>
+        
+        </div>
+        <div id="register" class="col s6 offset-s3">
+            <h1>Регистрація</h1>
+            {{#if registerError}}
+                <p class="alert">{{registerError}}</p>
+            {{/if}}
+            <form action="/auth/register" method="POST" novalidate>
+                <div class="input-field">
+                    <input id="email" name="email" type="email" class="validate" required>
+                    <label for="email">Email</label>
+                    <span class="helper-text" data-error="Ведіть email"></span>
+                </div>
+                <div class="input-field">
+                    <input id="name" name="name" type="text" class="validate" required>
+                    <label for="name">Ваше ім'я</label>
+                    <span class="helper-text" data-error="Ведіть ваша ім'я"></span>
+                </div>
+                <div class="input-field">
+                    <input id="password"name="password" type="password" class="validate" required>
+                    <label for="password">Пароль</label>
+                    <span class="helper-text" data-error="Введіть пароль"></span>
+                </div>
+                <div class="input-field">
+                    <input id="confirm" name="confirm" type="password" class="validate" required>
+                    <label for="confirm">Пароль підтвердження</label>
+                    <span class="helper-text" data-error="Введіть пароль"></span>
+                </div>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+                <button class="btn btn-primary" type="submit">Зареєструвати</button>
+        </form>
+        </div>
+    </div>
+</div>
